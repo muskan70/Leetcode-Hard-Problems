@@ -67,3 +67,17 @@ public:
     }
 };
 //This approach is only valid if edges are given from root to leaves order.
+
+//Valid soln
+class Solution {
+    public int minTime(int n, int[][] edges, List<Boolean> hasApple) {
+        int res = 0;
+        for (int i = edges.length - 1; i >= 0; i--){
+            if (hasApple.get(edges[i][1])) hasApple.set(edges[i][0], true);
+        }
+        for (int i = 0; i < edges.length; i++){
+            if (hasApple.get(edges[i][1])) res += 2;
+        }
+        return res;
+    }
+}
