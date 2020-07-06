@@ -48,3 +48,28 @@ public:
         return ans;
     }
 };
+
+//Method2 : Iterative approach
+class Solution {
+public:
+    vector<int> numsSameConsecDiff(int n, int k) {
+        unordered_set<int> s;
+        for(int i=1;i<10;i++)
+            s.insert(i);
+        for(int i=0;i<n-1;i++){
+            unordered_set<int> temp;
+            for(auto j:s){
+                int d=j%10;
+                if(d-k>=0) temp.insert(j*10+d-k);
+                if(d+k<=9) temp.insert(j*10+d+k);
+            }
+            s=temp;
+        }
+        if(n==1)
+            s.insert(0);
+        vector<int> ans;
+        for(auto i:s)
+            ans.push_back(i);
+        return ans;
+    }
+};
